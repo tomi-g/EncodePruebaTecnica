@@ -1,0 +1,16 @@
+-----------BASE DE DATOS------------------------
+1) En el directorio "Base de Datos" se encuentra el script de cración de la base de datos.
+
+-----------BACK-END----------------------------
+1) Ingresar en el directorio DesafioEncodeBack
+2) Ejecutar la solución "DesafioEncodeBack.sln"
+3) Una vez abierto Visual Studio, en el archivo appsettings.json editar la linea 3.
+   Cambiar "tomyserver" por el nombre del servidor local de la PC en que se vaya a probar el proyecto.
+4) Dar "play" a la solución.
+
+----------FRONT-END----------------------------
+1) Ingresar en el directorio DesafioEncodeFront
+2) Abrir consola de comandos (cmd) y ejecutar el siguiente comando: npm install
+3) Una vez instaladas las dependencias, ejecutar el siguiente comando: ng s -o
+
+
