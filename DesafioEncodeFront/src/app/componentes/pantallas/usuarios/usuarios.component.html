@@ -1,0 +1,133 @@
+<div class="container">
+    <h3 style="text-align: center;">{{AccionABMC | uppercase}} USUARIOS</h3>
+    <br>
+    <form name="FormReg" [formGroup]="FormReg">
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">
+                Nombre:
+            </label>
+            <div class="col-sm-3">
+                <input type="text" name="Nombre" class="form-control" formControlName="nombre" [ngClass]="{'is-invalid': (FormReg.controls.nombre.touched || submitted) && FormReg.controls.nombre.errors?.pattern}"/>
+                <span class="text-danger" *ngIf="(FormReg.controls.nombre.touched || submitted) && FormReg.controls.nombre.errors?.required">
+                    Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormReg.controls.nombre.touched || submitted) && FormReg.controls.nombre.errors?.pattern">
+                    Dato texto.
+                </span>
+            </div>
+            <label class="col-form-label col-sm-2 offset-sm-2">
+                Apellido:
+            </label>
+            <div class="col-sm-3">
+                <input type="text" name="Apellido" class="form-control" formControlName="apellido" [ngClass]="{'is-invalid': (FormReg.controls.apellido.touched || submitted) && FormReg.controls.apellido.errors?.pattern}"/>
+                <span class="text-danger" *ngIf="(FormReg.controls.apellido.touched || submitted) && FormReg.controls.apellido.errors?.required">
+                    Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormReg.controls.apellido.touched || submitted) && FormReg.controls.apellido.errors?.pattern">
+                    Dato texto.
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">
+                Correo Electrónico:
+            </label>
+            <div class="col-sm-3">
+                <input type="text" name="Correo" class="form-control" formControlName="correo_electronico" [ngClass]="{'is-invalid': (FormReg.controls.correo_electronico.touched || submitted) && FormReg.controls.correo_electronico.errors?.pattern}"/>
+                <span class="text-danger" *ngIf="(FormReg.controls.correo_electronico.touched || submitted) && FormReg.controls.correo_electronico.errors?.required">
+                    Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormReg.controls.correo_electronico.touched || submitted) && FormReg.controls.correo_electronico.errors?.pattern">
+                    Formato de email incorrecto.
+                </span>
+            </div>
+            <label class="col-form-label col-sm-2 offset-sm-2">
+                Fecha de Nacimiento:
+            </label>
+            <div class="col-sm-3">
+                <input type="text" name="Fecha" class="form-control" formControlName="fecha_nacimiento" [ngClass]="{'is-invalid': (FormReg.controls.fecha_nacimiento.touched || submitted) && FormReg.controls.fecha_nacimiento.errors?.pattern}"/>
+                <span class="text-danger" *ngIf="(FormReg.controls.fecha_nacimiento.touched || submitted) && FormReg.controls.fecha_nacimiento.errors?.required">
+                    Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormReg.controls.fecha_nacimiento.touched || submitted) && FormReg.controls.fecha_nacimiento.errors?.pattern">
+                    Formato de fecha incorrecto. Debe ser YYYY-MM-DD
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">
+                Teléfono:
+            </label>
+            <div class="col-sm-3">
+                <input type="text" name="Telefono" class="form-control" formControlName="telefono" [ngClass]="{'is-invalid': (FormReg.controls.telefono.touched) && FormReg.controls.telefono.errors?.pattern}"/>
+                <span class="text-danger" *ngIf="(FormReg.controls.telefono.touched || submitted) && FormReg.controls.telefono.errors?.pattern">
+                    Dato numerico.
+                </span>
+            </div>
+            <label class="col-form-label col-sm-2 offset-sm-2">
+                País de Residencia:
+            </label>
+            <div class="col-sm-3">
+                <select name="Pais" class="form-control" formControlName="pais">
+                    <option value="null"></option>
+                    <option [value]="opt.id" *ngFor="let opt of Paises">
+                        {{ opt.nombre }}
+                    </option>
+                </select>
+                <span class="text-danger" *ngIf="(FormReg.controls.pais.touched || submitted) && FormReg.controls.pais.errors?.required">
+                    Dato requerido.
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">
+                ¿Desea recibir información?:
+            </label>
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" [value]="true" formControlName="contacto">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Si
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" [value]="false" formControlName="contacto">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        No
+                    </label>
+                </div>
+                <span class="text-danger" *ngIf="(FormReg.controls.contacto.touched || submitted) && FormReg.controls.contacto.errors?.required">
+                    Dato requerido.
+                </span>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <button type="button" class="btn btn-primary" (click)="guardar()">
+                {{AccionABMC}}
+            </button>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Apellido</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dto of usuarios">
+                <td class="text-center">{{dto.nombre}}</td>
+                <td class="text-center">{{dto.apellido}}</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-outline-primary" (click)="editarUsuarios(dto)">Editar</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-outline-danger" *ngIf="dto.activo" (click)="eliminarUsuario(dto)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>

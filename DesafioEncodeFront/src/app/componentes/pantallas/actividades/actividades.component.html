@@ -1,0 +1,20 @@
+<div class="container">
+    <h3 style="text-align: center;">Listado de Actividades</h3>
+    <br>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center">Id Usuario</th>
+                <th class="text-center">Actividad Realizada</th>
+                <th class="text-center">Fecha de realización</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dto of actividades">
+                <td class="text-center">{{dto.id_usuario}}</td>
+                <td class="text-center">{{dto.actividad}}</td>
+                <td class="text-center">{{dto.create_date | date:'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
